@@ -1,39 +1,78 @@
-strcpy(temp1->ssn,s);
-strcpy(temp1->name,n);
-strcpy(temp1->dept,dpt);
-strcpy(temp1->designation,des);
-temp1->salary=sal;
-temp1->phno=p;
-temp1->right=head;
-head->left=temp1;
-head=temp1;
-temp1->left=NULL;
-}
-void ins_end(char s[15],char n[20],char dpt[5],char des[10],int sal,long long int p)
+#include<stdio.h>
+#include<stdlib.h>
+#define max 5
+void qmain();
+char qdelete();
+void qdisplay();
+char cqueue[max],item,ele;
+int ch,front=0,rear=0;
+void main()
 {
-temp1=(struct Enode *)malloc(1*sizeof(struct Enode));
-strcpy(temp1->ssn,s);
-strcpy(temp1->name,n);
-strcpy(temp1->dept,dpt);
-strcpy(temp1->designation,des);
-temp1->salary=sal;
-temp1->phno=p;
-tail->right=temp1;
-temp1->left=tail;
-temp1->right=NULL;
-tail=temp1;
+	while(1)
+	{
+		printf("\n1) qinsert \n2) qdelete \n3) qdisplay \n4) exit\n");
+		printf("enter ur choice:\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			
+			case 1: if(front==(rear+1)%max)
+			{
+				printf("queue overflow\n");
+			}
+			else
+			{
+				printf("enter the element\n");
+				scanf(" %c",&ele);
+                                qinsert();
+			}
+			break;
+			case 2: if(front==rear)
+			{
+				printf("queue underflow\n");
+			}
+			else
+			{
+				item=qdelete();
+			}
+			break;
+			case 3: if(front==rear)
+				{
+					printf("queue underflow\n");
+				}
+				else
+				{
+					qdisplay();
+				}
+			break;
+			case 4: exit(0);
+			default: printf(" invalid option\n");
+		}
+	}
 }
-void del_beg()
+void qinsert()
 {
-temp1=head->right;
-free(head);
-head=temp1;
-head->left=NULL;
+	rear=(rear+1)%max;
+	cqueue[rear]=ele;
 }
-void del_end()
+char qdelete()
 {
-temp1=tail->left;
-free(tail);
-tail=temp1;
-tail->right=NULL;
+	front=(front+1)%max;
+	printf("enter the element to be deleted\n%c",cqueue[front]);
+	return cqueue[front];
 }
+void qdisplay()
+{
+	int i=(front+1)%max;
+	while(i!=rear)
+	{
+		printf("%c\t",cqueue[i]);
+	i=(i+1)%max;
+	}
+	printf("%c\t",cqueue[i]);
+}
+		
+		
+				
+			
+
