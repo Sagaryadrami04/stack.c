@@ -11,7 +11,7 @@ void main()
 	while(1)
 	{
 		printf("\n1) qinsert \n2) qdelete \n3) qdisplay \n4) exit\n");
-		printf("enter ur choice:\n");
+		printf("enter your choice:\n");
 		scanf("%d",&ch);
 		switch(ch)
 		{
